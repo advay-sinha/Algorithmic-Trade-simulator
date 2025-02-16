@@ -6,14 +6,14 @@ const router = express.Router();
 
 // Send OTP
 router.post('/send-otp', async (req, res) => {
-  const { phone } = req.body;
+  const { firstName, lastName, phone } = req.body;
   const otp = Math.floor(100000 + Math.random() * 900000);
 
   try {
     // Save or update user with OTP in MongoDB
     await User.findOneAndUpdate(
       { phone },
-      { otp },
+      { firstName, lastName, otp },
       { upsert: true, new: true }
     );
 
@@ -26,9 +26,9 @@ router.post('/send-otp', async (req, res) => {
   }
 });
 
-// Verify OTP
+// Verify OTP and store user data
 router.post('/verify-otp', async (req, res) => {
-  const { phone, otp } = req.body;
+  const { firstName, lastName, phone, otp } = req.body;
 
   try {
     const user = await User.findOne({ phone });
@@ -38,6 +38,13 @@ router.post('/verify-otp', async (req, res) => {
     }
 
     if (user.otp === otp) {
+      // Save user data to MongoDB
+      await User.findOneAndUpdate(
+        { phone },
+        { firstName, lastName, otp: null }, // Clear OTP after verification
+        { upsert: true, new: true }
+      );
+
       res.status(200).json({ message: 'OTP verified successfully' });
     } else {
       res.status(400).json({ error: 'Invalid OTP' });

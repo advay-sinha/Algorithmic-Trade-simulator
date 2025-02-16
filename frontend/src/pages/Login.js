@@ -3,6 +3,8 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [phone, setPhone] = useState('');
   const [otp, setOtp] = useState('');
   const [isOtpSent, setIsOtpSent] = useState(false);
@@ -10,7 +12,7 @@ const Login = () => {
 
   const handleSendOTP = async () => {
     try {
-      await axios.post('http://localhost:5000/api/auth/send-otp', { phone });
+      await axios.post('http://localhost:5000/api/auth/send-otp', { firstName, lastName, phone });
       setIsOtpSent(true);
       alert('OTP sent successfully');
     } catch (err) {
@@ -20,7 +22,7 @@ const Login = () => {
 
   const handleVerifyOTP = async () => {
     try {
-      await axios.post('http://localhost:5000/api/auth/verify-otp', { phone, otp });
+      await axios.post('http://localhost:5000/api/auth/verify-otp', { firstName, lastName, phone, otp });
       alert('OTP verified successfully');
       navigate('/dashboard'); // Redirect to dashboard after verification
     } catch (err) {
@@ -33,7 +35,19 @@ const Login = () => {
       <h1>Login</h1>
       <input
         type="text"
-        placeholder="Enter Phone Number"
+        placeholder="First Name"
+        value={firstName}
+        onChange={(e) => setFirstName(e.target.value)}
+      />
+      <input
+        type="text"
+        placeholder="Last Name"
+        value={lastName}
+        onChange={(e) => setLastName(e.target.value)}
+      />
+      <input
+        type="text"
+        placeholder="Phone Number"
         value={phone}
         onChange={(e) => setPhone(e.target.value)}
       />
