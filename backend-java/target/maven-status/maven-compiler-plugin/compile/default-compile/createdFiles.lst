@@ -1,0 +1,6 @@
+com\algotrading\App.class
+com\algotrading\controllers\TradeController.class
+com\algotrading\models\Trade.class
+com\algotrading\services\TradingService.class
+com\algotrading\utils\MongoDBUtil.class
+com\algotrading\repositories\TradeRepository.class

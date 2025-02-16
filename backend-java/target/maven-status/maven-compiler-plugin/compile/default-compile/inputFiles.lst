@@ -1,0 +1,6 @@
+D:\Code\sides\algo-trading\Algorithmic-Trade-simulator\backend-java\src\main\java\com\algotrading\App.java
+D:\Code\sides\algo-trading\Algorithmic-Trade-simulator\backend-java\src\main\java\com\algotrading\controllers\TradeController.java
+D:\Code\sides\algo-trading\Algorithmic-Trade-simulator\backend-java\src\main\java\com\algotrading\models\Trade.java
+D:\Code\sides\algo-trading\Algorithmic-Trade-simulator\backend-java\src\main\java\com\algotrading\repositories\TradeRepository.java
+D:\Code\sides\algo-trading\Algorithmic-Trade-simulator\backend-java\src\main\java\com\algotrading\services\TradingService.java
+D:\Code\sides\algo-trading\Algorithmic-Trade-simulator\backend-java\src\main\java\com\algotrading\utils\MongoDBUtil.java
