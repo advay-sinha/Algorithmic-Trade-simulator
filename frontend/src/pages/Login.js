@@ -57,7 +57,7 @@ const Login = () => {
         <div>
           <input
             type="text"
-            placeholder="Enter OTP"
+            placeholder="Enter OTP for Verification"
             value={otp}
             onChange={(e) => setOtp(e.target.value)}
           />
